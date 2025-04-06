@@ -1,115 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stone Paper Seaser</title>
-  <style>
-    body {
-      text-align: center;
-    }
-
-    .clk {
-      height: 35px;
-      width: 85px;
-      background-color: chocolate;
-      border-radius: 5px;
-    }
-    .clk:active {
-      background-color: aqua;
-    }
-  </style>
+  <title>Calculater (Simple)</title>
+  <link rel="stylesheet" href="calcu.css">
 </head>
-
 <body>
-  <h1>Stone Paper Seaser</h1>
+  <div id="calculater">
+    <label for="screen">CALCULATOR</label>
+    <input type="text" id="screen" readonly>
 
-  <!-- For Stone -->
-  <button class="clk" onclick="
-  let computerChoice = generateComputerChoice();
-  let resultMsg = getResult('Stone', computerChoice);
-  showResult('Stone', computerChoice, resultMsg);
-  ">Stone 🗿</button>
+    <div class="button_cont">
 
-  <!-- For Paper -->
-  <button class="clk" onclick="
-  computerChoice = generateComputerChoice();
-  resultMsg = getResult('Paper', computerChoice);
-  showResult('Paper', computerChoice, resultMsg);
-  ">Paper 📝</button>
+      <button class="arithmatic_but" onclick="currentDisplay = ''; document.querySelector('#screen').value = currentDisplay;">CE</button>
+      <button class="arithmatic_but" id="total_clear" onclick="currentDisplay = ''; document.querySelector('#screen').value = currentDisplay;">C</button>
+      <button class="arithmatic_but" id="backspace" onclick="currentDisplay = (Math.round(currentDisplay / 10)); document.querySelector('#screen').value = currentDisplay;">X</button>
+      <button class="arithmatic_but" id="divide" onclick="currentDisplay = currentDisplay + '/'; document.querySelector('#screen').value = currentDisplay;">/</button>
 
-  <!-- For Seaser -->
-  <button class="clk" onclick="
-  computerChoice = generateComputerChoice();
-  resultMsg = getResult('Seaser', computerChoice);
-  showResult('Seaser', computerChoice, resultMsg);
-  ">Seaser ✂️</button>
+      <button class="num_buttom" id="num_7" onclick="currentDisplay = currentDisplay + '7'; document.querySelector('#screen').value = currentDisplay;">7</button>
+      <button class="num_buttom" id="num_8" onclick="currentDisplay = currentDisplay + '8'; document.querySelector('#screen').value = currentDisplay;">8</button>
+      <button class="num_buttom" id="num_9" onclick="currentDisplay = currentDisplay + '9'; document.querySelector('#screen').value = currentDisplay;">9</button>
+      <button class="arithmatic_but" id="multi" onclick="currentDisplay = currentDisplay + '*'; document.querySelector('#screen').value = currentDisplay;">*</button>
 
-  <script>
-    let score = {
-      win:0,
-      lost:0,
-      tie:0,
-    };
-    function generateComputerChoice() {
-      //This will generate random number between 0 and 3
-      let randomNumber = Math.random() * 3;
-      if (randomNumber > 0 && randomNumber <= 1) {
-        return 'Stone';
-      } else if (randomNumber > 1 && randomNumber <= 2) {
-        return 'Paper';
-      } else {
-        return 'Seaser'
-      }
-    }
+      <button class="num_buttom" id="num_4" onclick="currentDisplay = currentDisplay + '4'; document.querySelector('#screen').value = currentDisplay;">4</button>
+      <button class="num_buttom" id="num_5" onclick="currentDisplay = currentDisplay + '5'; document.querySelector('#screen').value = currentDisplay;">5</button>
+      <button class="num_buttom" id="num_6" onclick="currentDisplay = currentDisplay + '6'; document.querySelector('#screen').value = currentDisplay;">6</button>
+      <button class="arithmatic_but" id="minus" onclick="currentDisplay = currentDisplay + '-'; document.querySelector('#screen').value = currentDisplay;">-</button>
 
-    function getResult(userMove, computerMove) {
-      if (userMove === 'Stone') {
-        if (computerMove === 'Seaser') {
-          score.win++;
-          return 'You win.';
-        } else if (computerMove === 'Stone') {
-          score.tie++;
-          return `It's a tie.`;
-        } else if (computerMove === 'Paper') {
-          score.lost++;
-          return 'Computer has won.';
-        }
-      } else if (userMove === 'Paper') {
-        if (computerMove === 'Paper') {
-          score.tie++;
-          return `It's a tie.`;
-        } else if (computerMove === 'Seaser') {
-          score.lost++;
-          return 'Computer has won.';
-        } else if (computerMove === 'Stone') {
-          score.win++;
-          return 'You win.';
-        }
-      } else {
-        if (computerMove === 'Stone') {
-          score.lost++;
-          return 'Computer has won.';
-        } else if (computerMove === 'Paper') {
-          score.win++;
-          return 'You win.';
-        } else if (computerMove === 'Seaser') {
-          score.tie++;
-          return `It's a tie.`;
-        }
-      }
-    }
+      <button class="num_buttom" id="num_1" onclick="currentDisplay = currentDisplay + '1'; document.querySelector('#screen').value = currentDisplay;">1</button>
+      <button class="num_buttom" id="num_2" onclick="currentDisplay = currentDisplay + '2'; document.querySelector('#screen').value = currentDisplay;">2</button>
+      <button class="num_buttom" id="num_3" onclick="currentDisplay = currentDisplay + '3'; document.querySelector('#screen').value = currentDisplay;">3</button>  
+      <button class="arithmatic_but" id="add" onclick="currentDisplay = currentDisplay + '+'; document.querySelector('#screen').value = currentDisplay;">+</button>
 
-    function showResult(userMove, computerMove, result) {
-      alert(`You have chosen ${userMove}. Computer choice is ${computerMove}
-      
-      ${result}
-      
-      Win = ${score.win}, Lost = ${score.lost}, Tie = ${score.tie}`);
-      console.log(`You have chosen ${userMove}. Computer choice is ${computerMove} and ${result}`);
-    }
-  </script>
+
+      <button class="arithmatic_but" id="decimal" onclick="currentDisplay = currentDisplay + '.'; document.querySelector('#screen').value = currentDisplay;"><b>.</b></button> 
+      <button class="num_buttom" id="num_0" onclick="currentDisplay = currentDisplay + '0'; document.querySelector('#screen').value = currentDisplay;">0</button>  
+      <button class="arithmatic_but" id="backspace" onclick="currentDisplay = currentDisplay + '00'; document.querySelector('#screen').value = currentDisplay;">00</button>
+
+        <!-- Equal To button -->
+      <button class="arithmatic_but" id="equal-to" onclick="let result = eval(currentDisplay); currentDisplay = result; document.querySelector('#screen').value = currentDisplay;">=</button>
+
+      <script>
+        let currentDisplay = '';
+        document.querySelector('#screen').value = currentDisplay;
+      </script>
+    </div>
+  </div>
 </body>
-
 </html>
